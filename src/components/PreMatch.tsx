@@ -32,13 +32,24 @@ function PreMatch() {
     sessionStorage.setItem("teamNumber", teamNumber);
   }, [teamNumber]);
 
+  useEffect(() => {
+    let match = `${matchType}${matchNumber}`;
+    if (matchType === 'sf') {
+      match = `${matchType}${matchNumber}m1`;
+    }
+    if (matchType === 'f') {
+      match = `${matchType}1m${matchNumber}`;
+    }
+    sessionStorage.setItem("match", match);
+  }, [matchType, matchNumber]);
+
   const isFormValid = scouter && matchType && matchNumber && teamNumber;
 
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-12">
         <img src="src/assets/crescendo_logo.png" className="h-32"/>
-        <h1 className="flex lg:text-4xl sm:text-3xl ml-8 mt-4">Pre-Match Scouting</h1>
+        <h1 className="flex lg:text-4xl sm:text-3xl ml-8 mt-4">Match Scouting</h1>
       </div>
       <div className="grid w-full max-w-sm items-center mt-8 gap-1.5 mx-auto">
         <Label htmlFor="scouter">Scouter Initials</Label>
@@ -79,7 +90,7 @@ function PreMatch() {
       </div>
       <div className="grid w-full max-w-sm items-center mt-8 gap-1.5 mx-auto">
         <Label htmlFor="team">Team Number</Label>
-        <Input className="rounded" placeholder="Team Number" required value={teamNumber} onChange={e => setTeamNumber(e.target.value)} />
+        <Input className="rounded" placeholder="Team Number" required minLength={1} maxLength={5} value={teamNumber} onChange={e => setTeamNumber(e.target.value)} />
       </div>
       <div className="grid max-w-min items-center my-8 gap-1.5 mx-auto">
         <Button asChild className="rounded" disabled={!isFormValid}>
