@@ -1,7 +1,9 @@
-function PostMatch () {
+function PostMatch() {
   return (
     <>
-      <h1>Post Match</h1>
+      <div className="flex justify-center">
+        <h1>Post Match</h1>
+      </div>
     </>
   );
 }
