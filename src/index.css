@@ -42,3 +42,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: 'Ethnocentric';
+  src: url('./assets/ethnocentric.otf') format('opentype');
+}
+
+h1 {
+  font-family: 'Ethnocentric';
+}
