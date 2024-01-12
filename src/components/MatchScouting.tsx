@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 function MatchScouting() {
   return (
     <>
-      <div className="grid max-w-min items-center mt-8 gap-1.5 mx-auto">
+      <div className="grid max-w-min items-center mt-8 mb-4 gap-1.5 mx-auto">
         <Button asChild className="rounded">
           <Link to={"/"}>Back</Link>
         </Button>
