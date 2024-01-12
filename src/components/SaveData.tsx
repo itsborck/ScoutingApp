@@ -3,15 +3,36 @@ import { Button } from "@/components/ui/button";
 
 const SaveData = () => {
   const saveData = useCallback(() => {
-    const scouter = sessionStorage.getItem("scouter");
+    // PRE-MATCH DATA
     const match = sessionStorage.getItem("match");
     const team = sessionStorage.getItem("teamNumber");
     const robot = sessionStorage.getItem("robot");
 
-    const newData = `Scouter: ${scouter}\nMatch: ${match}\nTeam: ${team}\nRobot: ${robot}`;
+    // AUTO DATA
+    const robotMoves = sessionStorage.getItem("robotMoves");
+    const notesScoredInAmpAuto = sessionStorage.getItem("notesScoredInAmpAuto");
+    const notesScoredInSpeakerAuto = sessionStorage.getItem("notesScoredInSpeakerAuto");
 
-    const existingData = JSON.parse(localStorage.getItem("data") || "[]");
-    existingData.push(newData);
+    // TELEOP DATA
+
+    // ENDGAME DATA
+
+    // POST-MATCH DATA
+
+    const divider = "----------------------------------------\n";
+    const scoutingInfo = `TEAM: ${team}\nMatch: ${match}\nRobot: ${robot}\n\n`;
+    const autoInfo = `AUTONOMOUS\nRobot Leaves Starting Zone: ${robotMoves}\nNotes Scored in Amp: ${notesScoredInAmpAuto}\nNotes Scored in Speaker: ${notesScoredInSpeakerAuto}\n\n`;
+
+    let existingData = JSON.parse(localStorage.getItem("data") || "[]");
+
+    const newData = {
+      team: team,
+      scoutingInfo: scoutingInfo,
+      autoInfo: autoInfo,
+      divider: divider
+    };
+
+    existingData = [...existingData, newData].sort((a, b) => parseInt(a.team) - parseInt(b.team));
     localStorage.setItem("data", JSON.stringify(existingData));
   }, []);
 
@@ -20,7 +41,8 @@ const SaveData = () => {
     const scouter = sessionStorage.getItem("scouter");
 
     if (data.length > 0) {
-      const blob = new Blob(data, { type: "text/plain" });
+      const formattedData = data.map(item => `${item.scoutingInfo}\n${item.autoInfo}\n${item.divider}`).join('\n');
+      const blob = new Blob([formattedData], { type: "text/plain" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
@@ -29,10 +51,15 @@ const SaveData = () => {
     }
   }, []);
 
+  const clearData = useCallback(() => {
+    localStorage.clear();
+  }, []);
+
   return (
     <>
       <Button onClick={saveData} className="hover:underline rounded mx-2 my-4">Save Data</Button>
       <Button onClick={downloadData} className="hover:underline rounded mx-2 my-4">Download Data</Button>
+      <Button onClick={clearData} variant="destructive" className="hover:underline rounded mx-2 my-4">Clear Data</Button>
     </>
   );
 }
