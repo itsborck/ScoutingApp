@@ -14,7 +14,7 @@ function MatchScouting() {
           <Link to={"/"}>Back</Link>
         </Button>
       </div>
-      <div className="grid sm:grid-cols-1 lg:grid-cols-4 items-center justify-center">
+      <div className="grid sm:grid-cols-1 lg:grid-cols-4 items-start justify-center">
         <div>
           <Auto />
         </div>

@@ -14,14 +14,19 @@ const SaveData = () => {
     const notesScoredInSpeakerAuto = sessionStorage.getItem("notesScoredInSpeakerAuto");
 
     // TELEOP DATA
+    const notesScoredInAmp = sessionStorage.getItem("notesScoredInAmp");
+    const notesScoredInSpeaker = sessionStorage.getItem("notesScoredInSpeaker");
+    const amplifiedNotes = sessionStorage.getItem("amplifiedNotes");
+    const pickupLocation = sessionStorage.getItem("pickupLocation");
 
     // ENDGAME DATA
 
     // POST-MATCH DATA
 
     const divider = "----------------------------------------\n";
-    const scoutingInfo = `TEAM: ${team}\nMatch: ${match}\nRobot: ${robot}\n\n`;
+    const scoutingInfo = `TEAM ${team}\n\nMatch: ${match}\nRobot: ${robot}\n\n`;
     const autoInfo = `AUTONOMOUS\nRobot Leaves Starting Zone: ${robotMoves}\nNotes Scored in Amp: ${notesScoredInAmpAuto}\nNotes Scored in Speaker: ${notesScoredInSpeakerAuto}\n\n`;
+    const teleopInfo = `TELEOP\nNotes Scored in Amp: ${notesScoredInAmp}\nNotes Scored in Speaker: ${notesScoredInSpeaker}\nAmplified Notes Scored: ${amplifiedNotes}\nPickup Location: ${pickupLocation}\n\n`;
 
     let existingData = JSON.parse(localStorage.getItem("data") || "[]");
 
@@ -29,6 +34,7 @@ const SaveData = () => {
       team: team,
       scoutingInfo: scoutingInfo,
       autoInfo: autoInfo,
+      teleopInfo: teleopInfo,
       divider: divider
     };
 
@@ -41,7 +47,7 @@ const SaveData = () => {
     const scouter = sessionStorage.getItem("scouter");
 
     if (data.length > 0) {
-      const formattedData = data.map(item => `${item.scoutingInfo}\n${item.autoInfo}\n${item.divider}`).join('\n');
+      const formattedData = data.map(item => `${item.scoutingInfo}\n${item.autoInfo}\n${item.teleopInfo}\n${item.divider}`).join('\n');
       const blob = new Blob([formattedData], { type: "text/plain" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
