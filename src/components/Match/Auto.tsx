@@ -55,7 +55,7 @@ function Auto() {
         <div>
           <h1>Auto</h1>
         </div>
-        <div className="grid max-w-sm items-center mt-2 gap-1.5 mx-auto">
+        <div className="grid max-w-sm items-center mt-4 gap-1.5 mx-auto">
           <Label htmlFor="match-type">Does Robot Leave Starting Zone?</Label>
           <Select
             value={robotMoves}

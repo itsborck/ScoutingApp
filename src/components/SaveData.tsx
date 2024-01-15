@@ -20,6 +20,8 @@ const SaveData = () => {
     const pickupLocation = sessionStorage.getItem("pickupLocation");
 
     // ENDGAME DATA
+    const endPosition = sessionStorage.getItem("endPosition");
+    const noteInTrap = sessionStorage.getItem("noteInTrap");
 
     // POST-MATCH DATA
 
@@ -27,6 +29,7 @@ const SaveData = () => {
     const scoutingInfo = `TEAM ${team}\n\nMatch: ${match}\nRobot: ${robot}\n\n`;
     const autoInfo = `AUTONOMOUS\nRobot Leaves Starting Zone: ${robotMoves}\nNotes Scored in Amp: ${notesScoredInAmpAuto}\nNotes Scored in Speaker: ${notesScoredInSpeakerAuto}\n\n`;
     const teleopInfo = `TELEOP\nNotes Scored in Amp: ${notesScoredInAmp}\nNotes Scored in Speaker: ${notesScoredInSpeaker}\nAmplified Notes Scored: ${amplifiedNotes}\nPickup Location: ${pickupLocation}\n\n`;
+    const endgameInfo = `ENDGAME\nEnd Position: ${endPosition}\nNote in Trap: ${noteInTrap}\n\n`;
 
     let existingData = JSON.parse(localStorage.getItem("data") || "[]");
 
@@ -35,6 +38,7 @@ const SaveData = () => {
       scoutingInfo: scoutingInfo,
       autoInfo: autoInfo,
       teleopInfo: teleopInfo,
+      endgameInfo: endgameInfo,
       divider: divider
     };
 
@@ -47,7 +51,7 @@ const SaveData = () => {
     const scouter = sessionStorage.getItem("scouter");
 
     if (data.length > 0) {
-      const formattedData = data.map(item => `${item.scoutingInfo}\n${item.autoInfo}\n${item.teleopInfo}\n${item.divider}`).join('\n');
+      const formattedData = data.map(item => `${item.scoutingInfo}\n${item.autoInfo}\n${item.teleopInfo}\n${item.endgameInfo}\n${item.divider}`).join('\n');
       const blob = new Blob([formattedData], { type: "text/plain" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");

@@ -27,7 +27,7 @@ function MatchScouting() {
         <div>
           <PostMatch />
         </div>
-        <div className="fixed bottom-0 left-0 w-full flex justify-center items-center">
+        <div className="sm:relative lg:fixed bottom-0 left-0 w-full flex justify-center items-center">
           <SaveData />
         </div>
       </div>

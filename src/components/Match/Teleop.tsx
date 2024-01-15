@@ -62,7 +62,9 @@ function Teleop() {
   };
 
   const subtractAmplifiedNotes = () => {
-    setAmplifiedNotes(amplifiedNotes - 1);
+    if (amplifiedNotes > 0) {
+      setAmplifiedNotes(amplifiedNotes - 1);
+    }
   };
 
   return (
@@ -114,7 +116,7 @@ function Teleop() {
           </div>
         </div>
         <div className="grid max-w-sm items-center mt-2 gap-1.5 mx-auto">
-          <Label htmlFor="match-type">Note Pickup Location</Label>
+          <Label htmlFor="pickup-location">Note Pickup Location</Label>
           <Select
             value={pickupLocation}
             onValueChange={(value) => setPickupLocation(value)}
