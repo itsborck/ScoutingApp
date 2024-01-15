@@ -24,12 +24,18 @@ const SaveData = () => {
     const noteInTrap = sessionStorage.getItem("noteInTrap");
 
     // POST-MATCH DATA
+    const offenseSkills = sessionStorage.getItem("offenseSkills");
+    const defenseSkills = sessionStorage.getItem("defenseSkills");
+    const deadbot = sessionStorage.getItem("deadbot");
+    const tippedOver = sessionStorage.getItem("tippedOver");
+    const comments = sessionStorage.getItem("comments");
 
-    const divider = "----------------------------------------\n";
+    const divider = "----------------------------------------";
     const scoutingInfo = `TEAM ${team}\n\nMatch: ${match}\nRobot: ${robot}\n\n`;
     const autoInfo = `AUTONOMOUS\nRobot Leaves Starting Zone: ${robotMoves}\nNotes Scored in Amp: ${notesScoredInAmpAuto}\nNotes Scored in Speaker: ${notesScoredInSpeakerAuto}\n\n`;
     const teleopInfo = `TELEOP\nNotes Scored in Amp: ${notesScoredInAmp}\nNotes Scored in Speaker: ${notesScoredInSpeaker}\nAmplified Notes Scored: ${amplifiedNotes}\nPickup Location: ${pickupLocation}\n\n`;
     const endgameInfo = `ENDGAME\nEnd Position: ${endPosition}\nNote in Trap: ${noteInTrap}\n\n`;
+    const postMatchInfo = `MISC.\nOffense Skills: ${offenseSkills}\nDefense Skills: ${defenseSkills}\nDied?: ${deadbot}\nTipped Over?: ${tippedOver}\nComments: ${comments}`;
 
     let existingData = JSON.parse(localStorage.getItem("data") || "[]");
 
@@ -39,6 +45,7 @@ const SaveData = () => {
       autoInfo: autoInfo,
       teleopInfo: teleopInfo,
       endgameInfo: endgameInfo,
+      postMatchInfo: postMatchInfo,
       divider: divider
     };
 
@@ -51,7 +58,7 @@ const SaveData = () => {
     const scouter = sessionStorage.getItem("scouter");
 
     if (data.length > 0) {
-      const formattedData = data.map(item => `${item.scoutingInfo}\n${item.autoInfo}\n${item.teleopInfo}\n${item.endgameInfo}\n${item.divider}`).join('\n');
+      const formattedData = data.map(item => `${item.scoutingInfo}\n${item.autoInfo}\n${item.teleopInfo}\n${item.endgameInfo}\n${item.postMatchInfo}\n${item.divider}`).join('\n');
       const blob = new Blob([formattedData], { type: "text/plain" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");

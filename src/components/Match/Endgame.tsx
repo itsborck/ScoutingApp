@@ -13,7 +13,7 @@ function Endgame() {
     sessionStorage.getItem("endPosition") || ""
   );
   const [noteInTrap, setNoteInTrap] = useState(
-    sessionStorage.getItem("noteInTrap") || ""
+    sessionStorage.getItem("noteInTrap") || "No"
   );
 
   useEffect(() => {
