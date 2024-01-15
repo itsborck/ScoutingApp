@@ -49,7 +49,7 @@ function PostMatch() {
     <>
       <div className="flex flex-col items-center text-center justify-center mb-8">
         <div>
-          <h1>Endgame</h1>
+          <h1 className="text-4xl">Post-Match</h1>
         </div>
         <div className="grid w-48 items-center mt-4 gap-1.5 mx-auto">
           <Label htmlFor="offense">Offense Skill</Label>

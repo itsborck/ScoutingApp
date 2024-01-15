@@ -71,7 +71,7 @@ function Teleop() {
     <>
       <div className="flex flex-col items-center text-center justify-center mb-8">
         <div>
-          <h1>Teleop</h1>
+          <h1 className="text-4xl">Teleop</h1>
         </div>
         <div className="grid max-w-sm items-center mt-4 gap-1.5 mx-auto">
           <Label htmlFor="match-type">Notes Scored in Amp</Label>
